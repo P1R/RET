@@ -1,4 +1,4 @@
-# Retirement Manager Smart Contract (RetMan)
+# Retirement Manager Smart Contract (RET)
 
 :::info
 #### Table of Contents
@@ -52,7 +52,7 @@ rectangle "Retirement Manager (RM)"{
   usecase C4 as "Request Retirment
                  --
                  -Extends I am alive (date)"
-  usecase C5 as "Gets Gradual Retirement Deposit"
+  usecase C5 as "Gets Gradual Retirement payment"
   usecase C6 as "Request Information
                  (Alive Date for example)"
   usecase C7 as "Gets the percentage"
@@ -77,7 +77,7 @@ R2 --> C8
 
 @enduml
 ```
-Img 1. REST Usecase Diagram.
+Img 1. RET Usecase Diagram.
 
 1. User Deploys the smart contract (AS contract owner)
 2. User (contract owner) inputs into the smart contract:
@@ -127,7 +127,7 @@ group Sets inputs configs
 end
 loop Extends "I am alive"
   alt if not Retirement age reached
-    CO->SC: Deposits for Retirment
+    CO->SC: Deposit for Retirment
     activate SC
     SC->TD: Optional % donation to the Team
     activate TD
@@ -167,16 +167,121 @@ deactivate RL
 
 @enduml
 ```
-Img 2. REST Sequence Diagram.
+Img 2. RET Sequence Diagram.
 
-ToDo: Describe Img2 diagram.
+As shown in the Img2. this is the smart contract life cicle which is self descriptive.
 
-### Tokenomics
+## Tokenomics (Bussiness Model)
 
+
+The business model consists of a DAO (possibly Dandelion), where people/investors can contribute funds to the vault of the DAO and receive a token equivalent to the total fund shares of the vault. This token is for governance and allows participation, decision-making, and payments for the development of plugins (DEFI Integrations) that give investment returns to those who use the RET software. If the investor is not satisfied with the business model or the project for any reason, or for any reason wants to exit, they can burn their tokens and redeem the equivalent percentage of the amount they invested, which avoids legal problems because it is a governance token that has their assets in the equivalent percentage of their contribution, and they control their share of the DAO.
+
+
+### The RET token Distribution (proposal): 
+
+RET Tokenomics Distribution Table
+
+| Developers | DAO Vault (33% Liquidity DEX) | OnRamp DAO Investors |
+| -------- | -------- | -------- |
+| 9.9%     | 50.1%     |  40%    |
+
+> Note. It is well known that a cryptocurrency to be considered truthly decentralized (also considered by some US Institutions)no holder SHOULD NOT own more than 10%, that is why we must incentivice to provide also liquitidy to DEX and other methods that ensure the a proper decentralized RET Token distribution.
+
+```plantuml
+@startuml
+top to bottom direction
+actor "Contract Owner" as CO
+actor Developer as DEV
+actor Investor as INV
+
+rectangle "Smart Contract"{
+  usecase "Deposit for Retirement" as SC
+  usecase "Donation to the Team" as DD
+  SC .down.> DD : include
+    rectangle "Retirement Vault" as RV {
+    usecase assets
+  }
+}
+CO -down-> SC
+
+rectangle "RET DAPP"{
+
+  usecase "Assign Tokens" as AT
+  usecase "Check Finance" as CF
+  usecase "New Payment" as NP
+
+  rectangle "DAO - Vault" as VV{ 
+ 
+    usecase "Stores RET" as VT
+    usecase "Stores SOL" as SOL
+    usecase "Stores DAI" as DAI
+  }
+
+}
+DD -down-> VV
+CO --> AT
+DEV --> AT
+INV --> AT
+CO --> CF
+DEV --> CF
+INV --> CF
+CO --> NP
+DEV --> NP
+INV --> NP
+AT -up-> RV
+
+@enduml
+```
+Img 3. RET-DAO flow Diagram.
+
+### Governance (Quadratic Voting with Snapshot.org)
+
+
+**Aragon Dandelion**
+
+Facilitate collaboration with an organization that makes it easy for contributors to simply part ways when disagreements occur.
+
+User Guide: https://github.com/1Hive/dandelion-template/blob/master/README.md
+Source Code: https://github.com/1hive/dandelion-org
+Registry aragonpm.eth
+Network: mumbai
+TestDAO: https://client.aragon.org/#/phase1/
+
+#### Template configuration
+![](https://i.imgur.com/0sQsAp6.png)
+
+#### How to vote and scenarios Dandelion DAO
+The dandelion DAO is where there is a non transferable token, 1 person 1 vote: Considering there are 4 persons (and will be 5 for the foundation)
+
+![](https://i.imgur.com/Z6Oz9rK.png)
+
+> Support is the relative percentage of tokens that are required to vote “Yes” for a proposal to be approved. For example, if “Support” is set to 50%, then more than 50% of the tokens used to vote on a proposal must vote “Yes” for it to pass. 
+
+> Minimum Approval is the percentage of the total token supply that is required to vote “Yes” on a proposal before it can be approved. For example, if the “Minimum Approval” is set to 20%, then more than 20% of the outstanding token supply must vote “Yes” on a proposal for it to pass. 
+
+> Vote Duration is the length of time that the vote will be open for participation. For example, if the Vote Duration is set to 24 hours, then tokenholders have 24 hours to participate in the vote.` 
+
+> Vote Buffer is the minimum amount of time separating the start time of each new vote, as votes are processed in the sequence they were created. 
+
+> Vote Delay is the period of time an approved vote must wait before being executed. 
+
+![](https://i.imgur.com/4ip8j3h.png)
+
+> Token Name is the name you can assign to the token that will be minted when creating this organization. 
+
+> Token Symbol or ticker is a shortened name (typically in capital letters) that refers to a token or coin on a trading platform. For example: ANT.
 
 ## Implementation
 
 Not yet implemented.
+
+## Contact and Developers
+> Work developed in collaboration with the [Decentralized Climate Foundation](https://decentralizedclimate.org).
+
+- [P1r0](mailto:david@neetsec.com)
+- [Bleecker](mailto:ohuerta@decentralizedclimate.org)
+- [Ahgala](mailto:ahgala@hotmail.com)
+- [Mr. Bigotes](mailito:alelopezg@protonmail.com)
 
 
 ## References
@@ -185,7 +290,7 @@ Not yet implemented.
 
 ## Copyright
 ```
-Copyright (C)  Hernández García Alvaro, Huerta Valdez Omar Octavio, Perez Negrón Rocha David Eugenio, Mr. Bigotes.  
+Copyright (C) Ahgala, Bleecker, P1r0, Mr. Bigotes.  
 Permission is granted to copy, distribute and/or modify this document
 under the terms of the GNU Free Documentation License, Version 1.3
 or any later version published by the Free Software Foundation;
