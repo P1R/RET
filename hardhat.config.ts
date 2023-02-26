@@ -10,7 +10,7 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 });
 
 const config: HardhatUserConfig = {
-  solidity: "0.8.17",
+  solidity: "0.7.0",
   paths: { tests: "tests" },
 };
 
