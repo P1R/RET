@@ -250,27 +250,6 @@ TestDAO: https://client.aragon.org/#/phase1/
 #### Template configuration
 ![](https://i.imgur.com/0sQsAp6.png)
 
-#### How to vote and scenarios Dandelion DAO
-The dandelion DAO is where there is a non transferable token, 1 person 1 vote: Considering there are 4 persons (and will be 5 for the foundation)
-
-![](https://i.imgur.com/Z6Oz9rK.png)
-
-> Support is the relative percentage of tokens that are required to vote “Yes” for a proposal to be approved. For example, if “Support” is set to 50%, then more than 50% of the tokens used to vote on a proposal must vote “Yes” for it to pass. 
-
-> Minimum Approval is the percentage of the total token supply that is required to vote “Yes” on a proposal before it can be approved. For example, if the “Minimum Approval” is set to 20%, then more than 20% of the outstanding token supply must vote “Yes” on a proposal for it to pass. 
-
-> Vote Duration is the length of time that the vote will be open for participation. For example, if the Vote Duration is set to 24 hours, then tokenholders have 24 hours to participate in the vote.` 
-
-> Vote Buffer is the minimum amount of time separating the start time of each new vote, as votes are processed in the sequence they were created. 
-
-> Vote Delay is the period of time an approved vote must wait before being executed. 
-
-![](https://i.imgur.com/4ip8j3h.png)
-
-> Token Name is the name you can assign to the token that will be minted when creating this organization. 
-
-> Token Symbol or ticker is a shortened name (typically in capital letters) that refers to a token or coin on a trading platform. For example: ANT.
-
 ## Implementation
 
 Not yet implemented.
